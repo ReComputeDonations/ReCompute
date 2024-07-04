@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReCompute</title>
+    <link rel="icon" href="Photos/LogoCropped.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">   
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            font-family: 'Manrope', sans-serif; /* Use Manrope font */
+            background-color: #121212;
+            color: #ffffff;
+            text-align: left;
+        }
+        
+
+        /* Custom scrollbar styles for webkit browsers */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1f1f1f;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #000000;
+            border-radius: 10px;
+            border: 2px solid #1f1f1f;
+        }
+
+        header {
+            background-color: #1f1f1f;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: flex-start; /* Align header items to the left */
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 24px;
+            margin-right: 20px; /* Add spacing between logo and nav */
+        }
+
+        .logo img {
+            width: 65px; /* Adjust width as needed */
+            height: auto; /* Maintain aspect ratio */
+            margin-right: 3px; /* Space between logo and text */
+            vertical-align: middle; /* Align the image vertically with the text */
+            transform: translateY(-7px); /* Adjust value to move image up or down */
+        }
+
+        nav {
+            margin-left: auto; /* Push nav links to the right */
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #000000;
+            background-color: #ffffff;
+            border-radius: 5px;
+        }
+
+        .button {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: background-color 0.3s, color 0.3s;
+            margin-right: 20px; /* Add spacing between button and nav */
+        }
+
+        .button:hover {
+            background-color: transparent;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+        }
+
+        #Welcome {
+            min-height: calc(100vh - 60px);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Align content to the top */
+            align-items: center;
+            scroll-margin-top: 60px;
+            text-align: center;
+            margin-top: 10vh; /* Adjust margin from top */
+            padding-bottom: 0; /* Adjust padding to reduce space */
+        }
+
+        .typing-animation {
+            font-size: 4vw; /* Dynamic font size based on viewport width */
+            font-weight: 600;
+            border-right: 2px solid transparent; /* Start with transparent border */
+            white-space: nowrap;
+            overflow: hidden;
+            text-align: center;
+            margin-bottom: 30px; /* Reduce space below the animation */
+            width: 0;
+            animation: typing 7s steps(150, end) infinite;
+        }
+        
+        .logo-animation {
+            width: 12vw; /* Initial width based on viewport */
+            height: auto; /* Maintain aspect ratio */
+            margin-bottom: 20px; /* Adjust margin as needed */
+            position: absolute; /* Position the logo absolutely within the typing-animation container */
+            top: 10%; /* Adjust top position as needed */
+            left: 50%; /* Center the logo horizontally */
+        }
+
+        .secondary {
+            font-size: 2vw; /* Adjusted font size for secondary text */
+            margin-top: 10px; /* Adjust margin from the animation */
+            transform: translateY(-600px);
+        }
+
+        /* Media Queries for Responsive Design */
+
+        /* Small screens */
+        @media only screen and (max-width: 767px) {
+            #Welcome {
+                margin-top: 5vh; /* Adjust margin from top for smaller screens */
+            }
+            
+            .typing-animation {
+                font-size: 7vw; /* Adjust font size for small screens */
+                margin-bottom: 0px; /* Adjust space below the animation */
+            }
+
+            .logo-animation{
+                width: 15vw; /* Initial width based on viewport */
+                height: auto;
+                margin-bottom: 10px; /* Adjust margin as needed */
+            }
+            
+            .secondary {
+                font-size: 4vw; /* Adjusted font size for secondary text */
+                margin-top: 0px; /* Adjust margin from the animation */
+            }
+            .learn-more-button {
+                background-color: #ffffff;
+                color: #000000;
+                padding: 12px 24px;
+                text-decoration: none;
+                border-radius: 30px;
+                transition: background-color 0.3s, color 0.3s;
+                margin-top: 20px; /* Adjust margin from top */
+                display: inline-block;
+                transform: translateY(-600px);
+        }
+        }
+
+        @keyframes typing {
+            0% {
+                width: 0;
+            }
+            10% {
+                width: 0;
+            }
+            50% {
+                width: 100%; /* Adjust the width percentage to suit the length of your text */
+            }   
+            75% {
+                width: 100%; /* Hold the text fully typed for a longer time */
+            }
+            100% {
+                width: 0; /* Delete the text */
+            }
+        }
+
+
+
+
+        .learn-more-button {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: background-color 0.3s, color 0.3s;
+            margin-top: 20px; /* Adjust margin from top */
+            display: inline-block;
+            transform: translateY(-600px);  
+        }
+
+        .learn-more-button:hover {
+            background-color: transparent;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+        }
+
+        section {
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            scroll-margin-top: 60px;
+        }
+
+        h2 {
+            font-size: 6vw; /* Dynamic font size based on viewport width */
+            margin-bottom: 20px;
+        }
+
+        footer {
+            background-color: #1f1f1f;
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;
+            width: 100%;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Media Queries for Responsive Design */
+
+        /* Large screens */
+        @media only screen and (min-width: 1200px) {
+            .typing-animation {
+                font-size: 68px; /* Adjust font size for large screens */
+            }
+            h2 {
+                font-size: 45px; /* Adjust heading font size for large screens */
+            }
+            section#Welcome {
+                margin-top: 10vh; /* Adjust margin from top */
+            }
+        }
+
+        /* Medium screens */
+        @media only screen and (max-width: 1199px) and (min-width: 768px) {
+            .typing-animation {
+                font-size: 6vw; /* Adjust font size for medium screens */
+            }
+            h2 {
+                font-size: 4vw; /* Adjust heading font size for medium screens */
+            }
+            section#Welcome {
+                margin-top: 15vh; /* Adjust margin from top */
+            }
+        }
+
+        /* Small screens */
+        @media only screen and (max-width: 767px) {
+            .typing-animation {
+                font-size: 7vw; /* Adjust font size for small screens */
+            }
+            h2 {
+                font-size: 7vw; /* Adjust heading font size for small screens */
+            }
+            section#Welcome {
+                margin-top: 15vh; /* Adjust margin from top */
+            }
+        }
+
+        /* Team Section Styles */
+        #team {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background-color: #1f1f1f; /* Dark background for team section */
+            margin-top: 20px; /* Add margin from previous section */
+        }
+
+        .team-member {
+            text-align: center;
+            margin: 20px;
+            flex: 1;
+            max-width: 300px; /* Limit width of each team member */
+        }
+
+        .team-member img {
+            width: 150px; /* Set width for circular image */
+            height: 150px; /* Set height for circular image */
+            border-radius: 50%; /* Create circular shape */
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .team-member h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .team-member p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        /* Mission Section Specific Styles */
+        #mission {
+            display: flex;
+            flex-direction: row; /* Default to row for larger screens */
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+            padding: 40px;
+            background-color: #1f1f1f; /* Dark background for mission section */
+            color: #ffffff;
+            margin-top: 20px; /* Add margin from previous section */
+            text-align: center; /* Center text */
+        }
+
+        #mission-text {
+            flex: 1;
+            max-width: 800px; /* Limit width for better readability */
+            padding: 0 20px; /* Add some padding for better appearance */
+            text-align: center; /* Center text */
+        }
+
+        /* Mission Section Image Styles */
+        #mission-image {
+            flex: 1;
+            max-width: 100%; /* Ensure the image container doesn't exceed its parent's width */
+            margin-left: 20px; /* Add some space between text and image */
+        }
+
+        #mission-image img {
+            width: 100%; /* Make the image responsive */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 15px; /* Add rounded edges */
+        }
+
+        /* Media Queries for Mission Section */
+        @media only screen and (max-width: 1199px) {
+            #mission {
+                flex-direction: column; /* Change to column for vertical centering */
+            }
+
+            #mission-image {
+                display: none; /* Hide the image on smaller screens */
+            }
+        }
+        /* Small screens */
+        @media only screen and (max-width: 767px) {
+            .menu-icon {
+            display: block; /* Show menu icon on small screens */
+            cursor: pointer;
+        }
+
+    nav {
+        display: none; /* Hide nav links by default on small screens */
+        position: absolute;
+        top: 60px; /* Adjust top position to fit under header */
+        left: 0;
+        width: 100%;
+        background-color: #1f1f1f;
+        text-align: center;
+        z-index: 1000; /* Ensure nav is above other content */
+    }
+
+    nav.open {
+        display: flex; /* Show nav links when menu is open */
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+        padding: 0;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    nav ul li a {
+        padding: 10px;
+        color: #ffffff; /* Ensure text color matches header */
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    nav ul li a:hover {
+        color: #000000;
+        background-color: #ffffff;
+        border-radius: 5px;
+    }
+}
+
+
+        /* Contact Section Specific Styles */
+        #contact {
+            background-color: #1f1f1f; /* Dark background for contact section */
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px; /* Add margin from previous section */
+        }
+
+        #contact h2 {
+            font-size: 6vw; /* Dynamic font size based on viewport width */
+            margin-bottom: 20px;
+        }
+
+        #contact p {
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .social-icons {
+            margin-top: 30px;
+        }
+
+        .social-icon {
+            display: inline-block;
+            margin: 0 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px); /* Add hover effect */
+        }
+
+        .social-icon img {
+            width: 60px; /* Set size of social icons */
+            height: 60px; /* Set size of social icons */
+            border-radius: 50%; /* Create circular shape */
+            object-fit: cover;
+        }
+
+        /* Footer Specific Styles */
+        footer {
+            background-color: #1f1f1f; /* Dark background for footer */
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+
+    
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="Photos\Logo.png" alt="Logo">
+            ReCompute
+        </div>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#Welcome">Home</a></li>
+                <li><a href="#mission">Mission</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <section id="Welcome">
+        <!-- <div class="welcome-text">
+            <div class="typing-animation">Welcome to ReCompute
+            <img src="Photos/Logo.png" class="logo-animation"></div>    
+        </div> -->
+        
+        <section id="Welcome">
+            <div class="typing-animation" id="typingAnimation"></div>
+        </section>
+        <div class="secondary">Empowering Students with Technology</div>
+        <a href="#mission" class="learn-more-button">Learn More</a>
+    </section>
+    <section id="mission">
+        <div id="mission-text">
+            <h2>Our Mission</h2>
+            <p>As students, we've immersed ourselves in various classes and extracurricular activities such as Robotics and Computer Science. Over Time we have noticed that these activities require access to computers that are more powerful than the regular school-issued Chromebooks. To learn and practice coding effectively, a computer that meets certain standards is essential. Unfortunately, we discovered that many of our peers lacked the opportunity to use such computers at home.</p>
+            <p>The COVID-19 pandemic exacerbated this issue, revealing that many more students faced this problem than previously thought. In Massachusetts alone, as of 2020, 30,000 students did not have access to a computer screen necessary for excelling in their studies both inside and outside the classroom.</p>
+            <p>At ReCompute, we're driven by a vision of equity in access to technology. Everyone, regardless of background or economic status, should have the opportunity to harness the transformative power of computers. Our mission is simple yet profound: to help bridge the digital divide by refurbishing donated computers and distributing them to underserved communities, schools, and individuals.</p>
+            
+            <h3>How Are We Going to Do This?</h3>
+            <p>Our process involves multiple detailed phases to ensure a comprehensive approach:</p>
+            <h4>Phase 1: Initial Deployment at Marlborough High School</h4>
+            <ul>
+                <li><strong>Assessment:</strong> Conduct a needs assessment to identify students who lack access to adequate computers.</li>
+                <li><strong>Collection:</strong> Collect at least 30 computers from local businesses, community members, and organizations.</li>
+                <li><strong>Refurbishment:</strong> Fully reset each computer, install a new copy of a free Linux distribution, and ensure each device undergoes a rigorous testing process.</li>
+                <li><strong>Distribution:</strong> Distribute the refurbished computers to identified students, accompanied by a guide on how to use the new system.</li>
+            </ul>
+            <h4>Phase 2: Expansion to Neighboring Towns</h4>
+            <ul>
+                <li><strong>Outreach:</strong> Contact neighboring towns and schools to gauge interest and identify additional students in need.</li>
+                <li><strong>Partnerships:</strong> Establish partnerships with local businesses and organizations to increase computer donations and financial support.</li>
+                <li><strong>Scaling Up:</strong> Increase the volume of collected and refurbished computers based on the expanded needs assessment.</li>
+                <li><strong>Workshops:</strong> Conduct workshops for recipients to help them get the most out of their new computers, covering basics of the Linux operating system and introductory programming.</li>
+            </ul>
+            <h4>Phase 3: Building a Volunteer Network</h4>
+            <ul>
+                <li><strong>Recruitment:</strong> Actively recruit volunteers, including students, community members, and tech enthusiasts, to help with collection, refurbishment, and distribution.</li>
+                <li><strong>Training:</strong> Provide comprehensive training for volunteers to ensure they are equipped with the necessary skills and knowledge.</li>
+                <li><strong>Community Engagement:</strong> Engage with the community through events, information sessions, and collaborative projects to raise awareness and garner support.</li>
+                <li><strong>Feedback Loop:</strong> Establish a feedback mechanism to continuously improve our processes based on recipient and volunteer experiences and suggestions.</li>
+            </ul>
+            <h3>How Can Companies Help Us?</h3>
+            <p>We invite companies to join us in our mission to bridge the digital divide. Your support can make a significant difference in the lives of students in need. Here are some ways you can help:</p>
+            <ul>
+                <li><strong>Donate Unused Computers:</strong> Provide us with unused or old computers that can be refurbished and given a new life.</li>
+                <li><strong>Financial Assistance:</strong> Contribute funds to help us with the refurbishment process, including replacing defective parts and installing new software.</li>
+                <li><strong>Partnerships:</strong> Partner with us to expand our reach and impact. This can include co-hosting events, facilitating workshops, or providing logistical support.</li>
+                <li><strong>Employee Engagement:</strong> Encourage your employees to volunteer with us, offering their skills in technology, education, or community outreach.</li>
+            </ul>
+            <p>Together, we can empower the next generation with the tools they need to succeed in a digital world. Thank you for considering a partnership with ReCompute.</p>
+        </div>
+        <div id="mission-image">
+            <img src="Photos\MissionPhoto.jpg" alt="Mission Image">
+        </div>
+    </section>
+    
+
+    <section id="team">
+        <div class="team-member">
+            <img src="Photos\Atul-cropped.jpg" alt="Atul's photo">
+            <h3>Atul</h3>
+            <p>Co-founder of ReCompute, Head of Computer Operations.</p>
+        </div>
+        <div class="team-member">
+            <img src="Photos\Andrew-cropped.jpg" alt="Andrew's photo">
+            <h3>Andrew</h3>
+            <p>Co-founder of ReCompute, Head of Communications</p>
+        </div>
+        <div class="team-member">
+            <img src="Photos\Chris-cropped.jpg" alt="Chris's photo">
+            <h3>Chris</h3>
+            <p>Co-founder of ReCompute, Head of Distribution</p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Have questions or want to get involved? Reach out to us on our social media platforms!</p>
+        <div class="social-icons">
+            <a href="mailto:recompute24@gmail.com" target="_blank" class="social-icon">
+                <img src="Photos/GmailIcon-Cropped.png" alt="Gmail">
+            </a>
+            <a href="https://www.instagram.com/recompute.donations" target="_blank" class="social-icon">
+                <img src="Photos/InstaIcon-Cropped2.png" alt="Instagram">
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p><center>2024 ReCompute.</center></p>
+    </footer>
+
+
+    <script>
+        // Adjust scroll position when clicking on navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const target = document.querySelector(this.getAttribute('href'));
+                const headerHeight = document.querySelector('header').offsetHeight;
+                const targetOffsetTop = target.getBoundingClientRect().top + window.pageYOffset;
+                const additionalScroll = window.innerHeight * (0.3 / 7);
+                window.scrollTo({
+                    top: targetOffsetTop - headerHeight + additionalScroll,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Ensure initial scroll position on page load
+        window.addEventListener('load', () => {
+            const hash = window.location.hash;
+            if (hash !== '') {
+                const target = document.querySelector(hash);
+                if (target) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetOffsetTop = target.getBoundingClientRect().top +    window.pageYOffset;
+                    const additionalScroll = window.innerHeight * (0.3 / 7);
+                    window.scrollTo({
+                        top: targetOffsetTop - headerHeight + additionalScroll,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+        function toggleMenu() {
+            const nav = document.querySelector('nav');
+            const menuIcon = document.querySelector('.menu-icon');
+            menuIcon.classList.toggle('open');
+            nav.classList.toggle('open');
+        }
+        // JavaScript to switch between "Welcome to ReCompute" and logo display
+        const typingElement = document.getElementById('typingAnimation');
+        const texts = [
+            'Welcome to ReCompute',
+            'Welcome to ReCompute'
+        ];
+        let currentTextIndex = 0;
+
+        function animateText() {
+            typingElement.innerHTML = texts[currentTextIndex];
+            currentTextIndex = (currentTextIndex + 1) % texts.length; // Switch to the next text
+        }
+
+        // Initial call to start the animation
+        animateText();
+
+        // Interval to switch between texts (adjust timing as needed)
+        setInterval(animateText, 7000); // Switch every 5 seconds (5000 milliseconds)
+    </script>
+</body>
+</html> 
